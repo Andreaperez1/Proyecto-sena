@@ -1,9 +1,9 @@
-import './App.css'
+import Registro from "./componentes/registro"
 
 function App() {
   return (
       <div>
-
+        <Registro/>
       </div>
   )
 }
