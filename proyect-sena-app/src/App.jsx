@@ -1,4 +1,4 @@
-import Registro from "./componentes/registro"
+import Registro from "./page/Registro"
 
 function App() {
   return (
