@@ -23,7 +23,10 @@ const Registro = () => {
 
 <Input label ="tarjeta de identidad"></Input>
 
-<Input label ="correo electronico personal"></Input>
+<Input label ="telefono"></Input>
+
+
+
     </div>
   )
 }
