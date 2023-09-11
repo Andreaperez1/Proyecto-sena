@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Input from "../componentes/Input";
 import Desplegable from "../componentes/desplegable";
-import Correo from "../componentes/correo";
-import PasswordInput from "../componentes/Contraseña";
-
+import Correo from "../componentes/Correo";
+import PasswordInput from "../componentes/contraseña";
+import Autocompletar from "../componentes/autocompletar";
 import PoliticasPrivacidad from "../componentes/PoliticasPrivacidad";
 
 
@@ -12,6 +12,8 @@ const Registro = () => {
 
   const [politicasAceptadas, setPoliticasAceptadas] = useState(false);
   const [mostrarPoliticas, setMostrarPoliticas] = useState(false);
+  const [programaSeleccionado, setProgramaSeleccionado] = useState("");
+  const [infoFicha, setInfoFicha] = useState("");
 
   const handleAceptarPoliticas = () => {
     setPoliticasAceptadas(true);
@@ -29,13 +31,33 @@ const Registro = () => {
     }
   };
 
+  const FichaInfo = {
+    "2712267": "programacion de software",
+    "2712345": "Información sobre el Programa 2",
+    "2787654": "Información sobre el Programa 3",
+  };
+
+  // Función para manejar la selección de programa
+// Corrige el nombre del objeto
+const handleSeleccionFicha = (Ficha) => {
+  // Accede a la información del programa seleccionado desde el objeto
+  const informacion = FichaInfo[Ficha];
+
+  setProgramaSeleccionado(Ficha);
+  setInfoFicha(informacion);
+};
+
+
   return (
     <div>
       <h1>REGISTRATE</h1>
       <form onSubmit={handleSubmit}>
+
         <Input label="nombres" />
+
         <Input label="apellidos" />
 
+        <label htmlFor="Tipo de Documento">Tipo de Documento</label>
         <Desplegable
           options={[
             { value: " ", label: " " },
@@ -46,13 +68,16 @@ const Registro = () => {
           ]}
         />
 
-        <Input label="numero de documento" />
+        <Input label="N° de documento" />
+
         <Input label="telefono" />
 
-        <Correo correo="Sena" />
-        <Correo correo="personal" />
+        <Correo correo="Correo Institucional" />
 
-        <PasswordInput />
+        <Correo correo="Correo personal" />
+
+        <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
+        <input type="date" />
 
         <label htmlFor="Rol">Rol</label>
         <Desplegable
@@ -64,8 +89,63 @@ const Registro = () => {
           ]}
         />
 
-        <label htmlFor="fechaNacimiento"></label>
-        <input type="date" />
+        <label htmlFor="Contraseña"></label>
+        <PasswordInput />
+
+        <label htmlFor="Confirmacion de contraseña"></label>
+        <PasswordInput />
+
+        <label htmlFor="N°">Número de ficha</label>
+      <Autocompletar
+        opciones={Object.keys(FichaInfo)} // Utiliza las claves del objeto como opciones
+        onSeleccion={handleSeleccionFicha}
+      />
+      <label htmlFor="programa"></label>
+      <input type="text" id="infoFicha" value={infoFicha} readOnly />
+
+        <Input label="Ciudad (Corregimiento, Municipio)" />
+
+        <Input label="Barrio" />
+
+        <Input label="Dirrección" />
+
+        <label htmlFor="Tipo de sangre">Tipo de sangre</label>
+        <Desplegable
+          options={[
+            { value: " ", label: " " },
+            { value: "A+", label: "A+" },
+            { value: "A-", label: "A-" },
+            { value: "B+", label: "B+" },
+            { value: "B-", label: "B-" },
+            { value: "O+", label: "O+" },
+            { value: "O-", label: "O-" },
+            { value: "AB+", label: "AB+" },
+            { value: "AB-", label: "AB-" },
+
+          ]}
+        />
+
+        <label htmlFor="Genero">Genero</label>
+        <Desplegable
+          options={[
+            { value: " ", label: " " },
+            { value: "Femenino", label: "Femenino" },
+            { value: "Masculino", label: "Masculino" },
+            { value: "Otro", label: "Otro" },
+          ]}
+        />
+
+      <label htmlFor="Eps">Eps</label>
+       <Desplegable
+          options={[
+            { value: " ", label: " " },
+            { value: "EPS 1", label: "EPS 1" },
+            { value: "EPS 2", label: "EPS 2" },
+            { value: "EPS 3", label: "EPS 3" },
+            { value: "EPS 4", label: "EPS 4" },
+            { value: "PS 5", label: "EPS 5" },
+          ]}
+        />
 
         <label htmlFor="politicas">
           <input
@@ -91,6 +171,9 @@ const Registro = () => {
           </div>
         </div>
       )}
+
+      <button>Atras</button>
+      <button>Siguiente</button>
     </div>
   );
 };
