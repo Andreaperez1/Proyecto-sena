@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../componentes/Input";
 import Desplegable from "../componentes/desplegable";
 import Correo from "../componentes/correo";
+import PasswordInput from "../componentes/Contraseña";
 
 import PoliticasPrivacidad from "../componentes/PoliticasPrivacidad";
 
@@ -51,8 +52,7 @@ const Registro = () => {
         <Correo correo="Sena" />
         <Correo correo="personal" />
 
-        <label htmlFor="contraseña"></label>
-        <input type="password" placeholder="contraseña" />
+        <PasswordInput />
 
         <label htmlFor="Rol">Rol</label>
         <Desplegable
@@ -77,13 +77,11 @@ const Registro = () => {
           <a href="#" onClick={() => setMostrarPoliticas(true)}>Acepto las politicas de privacidad y seguridad</a>
         </label>
 
-       
-
         <button type="submit" disabled={!politicasAceptadas}>
           Registrar
         </button>
       </form>
-
+      
             {/* Ventana emergente para las políticas */}
             {mostrarPoliticas && (
         <div className="ventana-emergente">
