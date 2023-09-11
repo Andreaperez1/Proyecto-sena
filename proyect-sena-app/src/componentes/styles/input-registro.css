@@ -1,0 +1,40 @@
+.input-registro {
+  border: 0;
+  background-color: #ECECEC;
+  border-radius: 15px;
+  min-height: 2.5rem;
+  min-width: 15rem;
+  /* margin: 1rem; */
+  padding: 0rem 1rem;
+  margin: 1.6%
+}
+
+
+.input-contraseña {
+  border: 0;
+  background-color: #ECECEC;
+  border-radius: 15px;
+  min-height: 2.5rem;
+  min-width: 13rem;
+  /* margin: 1rem; */
+  padding: 0rem 1rem;
+  margin: 1.6%
+}
+
+.mostrar-conrtaseña {
+  background-color: transparent;
+  border: 0;
+}
+
+.campo-contraseña {
+  display: flex;
+}
+
+/* estas lineas quitan las pequeñas flechas
+por defecto de los inputs tipo número
+*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

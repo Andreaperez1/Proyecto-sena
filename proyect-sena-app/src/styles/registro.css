@@ -1,0 +1,60 @@
+h2 {
+  font-size: 3rem;
+}
+
+.caja-azul {
+  display: flex;
+  background-color: #004AAD;
+  min-height: 100vh;
+}
+
+.caja-blanca {
+  gap: 1rem;
+  width: 50%;
+  background-color: #FFF;
+  border-radius: 0px 40% 0px 40%;
+}
+
+.img-registro {
+  width: 50%;
+  object-fit: cover
+}
+
+.formulario1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navegacion-registro {
+  position: fixed;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+
+  bottom: 0;
+
+}
+
+.navegacion-registro>button {
+  border: 0;
+  padding: 4.5rem;
+  font-weight: 700;
+  text-decoration: underline;
+  background-color: transparent;
+
+
+}
+
+.campo-fecha {
+  color: gray;
+  border: 0;
+  background-color: #ECECEC;
+  border-radius: 15px;
+  min-height: 2.5rem;
+  min-width: 15rem;
+  /* margin: 1rem; */
+  padding: 0rem 1rem;
+  margin: 1.6%
+}
