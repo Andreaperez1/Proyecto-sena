@@ -2,7 +2,7 @@ import React from "react";
 
 const Fecha = ({ label}) => {
     return (
-    <imput
+    <input
     type="date"
     />
     )

@@ -1,4 +1,4 @@
-
+import React from "react";
 
 function Correo (props) {
     return (
@@ -10,4 +10,4 @@ function Correo (props) {
     )
 }
 
-export default Correo
+export default Correo;
