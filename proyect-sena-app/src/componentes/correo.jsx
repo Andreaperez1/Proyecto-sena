@@ -17,7 +17,7 @@ function Correo(props) {
 				type="email"
 				name={`correo ${props.correo}`}
 				label={`correo ${props.correo}`}
-				placeholder={`correo ${props.correo}`}
+				placeholder={`${props.correo}`}
 				required
 			></input>
 		</>

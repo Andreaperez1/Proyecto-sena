@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './styles/input-registro.css'
 
-function PasswordInput() {
+function PasswordInput({ placeholder = 'Contraseña *' }) {
 	const [password, setPassword] = useState('')
 	const [showPassword, setShowPassword] = useState(false)
 
@@ -12,10 +12,11 @@ function PasswordInput() {
 	return (
 		<div className="campo-contraseña">
 			<input
-				className="input-contraseña"
+				className=" input-registro input-contraseña"
 				type={showPassword ? 'text' : 'password'}
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
+				placeholder={placeholder}
 			/>
 			<button
 				className="mostrar-conrtaseña"

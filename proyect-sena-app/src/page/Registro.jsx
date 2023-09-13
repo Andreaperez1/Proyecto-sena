@@ -5,12 +5,11 @@ import React, { useState } from 'react'
 import Input from '../componentes/Input'
 import Desplegable from '../componentes/desplegable'
 import Correo from '../componentes/Correo'
-import PasswordInput from '../componentes/contraseña'
 import Autocompletar from '../componentes/autocompletar'
 import PoliticasPrivacidad from '../componentes/PoliticasPrivacidad'
 
 // css
-import '../styles/registro.css'
+import '../page/styles/registro.css'
 
 const Registro = () => {
 	const handleAceptarPoliticas = () => {
@@ -52,35 +51,47 @@ const Registro = () => {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
-				<h1>REGISTRATE</h1>
-				<Input label="nombres" />
+			<form onSubmit={handleSubmit} className="caja-azul">
+				<div className="caja-blanca">
+					<div className="formulario">
+						<h2>REGISTRATE</h2>
+						<Input label="Nombres *" />
 
-				<Input label="apellidos" />
+						<Input label="Apellidos *" />
 
-				<label htmlFor="Tipo de Documento">Tipo de Documento</label>
-				<Desplegable
-					options={[
-						{ value: ' ', label: ' ' },
-						{ value: 'T.I', label: 'T.I' },
-						{ value: 'C.C', label: 'C.C' },
-						{ value: 'C.E', label: 'C.E' },
-						{ value: 'P.A', label: 'P.A' },
-					]}
+						{/* <label htmlFor="Tipo de Documento">Tipo de Documento</label> */}
+						<Desplegable
+							options={[
+								{ value: ' ', label: 'Tipo de documento *' },
+								{ value: 'T.I', label: 'T.I' },
+								{ value: 'C.C', label: 'C.C' },
+								{ value: 'C.E', label: 'C.E' },
+								{ value: 'P.A', label: 'P.A' },
+							]}
+						/>
+
+						<Input label="N° de documento * " />
+
+						<Input label="Teléfono *" />
+
+						<Correo correo="Correo Institucional *" />
+
+						<Correo correo="Correo Personal" />
+
+						{/* <label htmlFor="fechaNacimiento">Fecha de nacimiento</label> */}
+						<input className="campo-fecha" type="date" />
+					</div>
+					<button className="navegacion-registro">Atras</button>
+					<button className="navegacion-registro">Siguiente</button>
+				</div>
+				<img
+					className="img-registro"
+					src="../src/assets/img/mujer-gorra.webp"
+					alt="aprendiz sena"
 				/>
-
-				<Input label="N° de documento" />
-
-				<Input label="telefono" />
-
-				<Correo correo="Correo Institucional" />
-
-				<Correo correo="Correo personal" />
-
-				<label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
-				<input type="date" />
 			</form>
-			<label htmlFor="Contraseña"></label>
+			{/* elementos de otras paginas */}
+			{/* <label htmlFor="Contraseña"></label>
 			<PasswordInput />
 			<label htmlFor="Confirmacion de contraseña"></label>
 			<PasswordInput />
@@ -117,6 +128,14 @@ const Registro = () => {
 					{ value: 'Otro', label: 'Otro' },
 				]}
 			/>
+			<Desplegable
+				options={[
+					{ value: '', label: 'Rol *' },
+					{ value: 'Aprendiz', label: 'Aprendiz' },
+					{ value: 'Profesor', label: 'Profesor' },
+					{ value: 'Admin', label: 'Admin' },
+				]}
+			/>
 			<label htmlFor="Eps">Eps</label>
 			<Desplegable
 				options={[
@@ -142,9 +161,9 @@ const Registro = () => {
 
 			<button type="submit" disabled={!politicasAceptadas}>
 				Registrar
-			</button>
+			</button> */}
 			{/* Ventana emergente para las políticas */}
-			{mostrarPoliticas && (
+			{/* {mostrarPoliticas && (
 				<div className="ventana-emergente">
 					<div className="contenido-emergente">
 						<PoliticasPrivacidad />
@@ -153,7 +172,7 @@ const Registro = () => {
 				</div>
 			)}
 			<button>Atras</button>
-			<button>Siguiente</button>
+			<button>Siguiente</button> */}
 		</div>
 	)
 }

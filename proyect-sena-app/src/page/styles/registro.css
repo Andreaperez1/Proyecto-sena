@@ -1,5 +1,5 @@
 h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 
 .caja-azul {
@@ -9,7 +9,6 @@ h2 {
 }
 
 .caja-blanca {
-  gap: 1rem;
   width: 50%;
   background-color: #FFF;
   border-radius: 0px 40% 0px 40%;
@@ -20,20 +19,21 @@ h2 {
   object-fit: cover
 }
 
-.formulario1 {
+.formulario {
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .navegacion-registro {
-  position: fixed;
+  position: 0;
   width: 50%;
   display: flex;
   justify-content: space-between;
-
   bottom: 0;
+
 
 }
 
@@ -43,7 +43,7 @@ h2 {
   font-weight: 700;
   text-decoration: underline;
   background-color: transparent;
-
+  margin: 10px;
 
 }
 
@@ -54,7 +54,5 @@ h2 {
   border-radius: 15px;
   min-height: 2.5rem;
   min-width: 15rem;
-  /* margin: 1rem; */
   padding: 0rem 1rem;
-  margin: 1.6%
 }
