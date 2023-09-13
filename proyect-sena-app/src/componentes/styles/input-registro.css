@@ -8,6 +8,10 @@
   margin: 1.6%
 }
 
+.campo-contraseña {
+  display: flex;
+
+}
 
 .input-contraseña {
   margin-left: 1.5rem;
@@ -16,10 +20,6 @@
 .mostrar-conrtaseña {
   background-color: transparent;
   border: 0;
-}
-
-.campo-contraseña {
-  display: flex;
 }
 
 /* estas lineas quitan las pequeñas flechas

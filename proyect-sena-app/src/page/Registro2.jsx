@@ -8,6 +8,7 @@ import Autocompletar from '../componentes/autocompletar'
 import Input from '../componentes/Input'
 // CSS
 import '../page/styles/registro.css'
+import '../componentes/styles/input-registro.css'
 
 const Registro2 = () => {
 	const FichaInfo = {
