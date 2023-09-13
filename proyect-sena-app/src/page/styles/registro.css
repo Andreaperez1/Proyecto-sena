@@ -27,8 +27,8 @@ h2 {
   justify-content: center;
 }
 
-.navegacion-registro {
-  position: 0;
+.navegacion {
+  position: fixed;
   width: 50%;
   display: flex;
   justify-content: space-between;
@@ -37,7 +37,7 @@ h2 {
 
 }
 
-.navegacion-registro>button {
+.navegacion>button {
   border: 0;
   padding: 4.5rem;
   font-weight: 700;

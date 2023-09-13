@@ -81,8 +81,10 @@ const Registro = () => {
 						{/* <label htmlFor="fechaNacimiento">Fecha de nacimiento</label> */}
 						<input className="campo-fecha" type="date" />
 					</div>
-					<button className="navegacion-registro">Atras</button>
-					<button className="navegacion-registro">Siguiente</button>
+					<div className="navegacion">
+						<button className="boton-navegacion">Atras</button>
+						<button className="boton-navegacion">Siguiente</button>
+					</div>
 				</div>
 				<img
 					className="img-registro"
