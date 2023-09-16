@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 
 // Componentes
 import Desplegable from '../componentes/desplegable'
-import PasswordInput from '../componentes/contraseña'
+import PasswordInput from '../componentes/Contraseña'
 import Autocompletar from '../componentes/autocompletar'
 import Input from '../componentes/Input'
+
 // CSS
 import '../page/styles/registro.css'
 import '../componentes/styles/input-registro.css'
@@ -32,7 +33,7 @@ const Registro2 = () => {
 	return (
 		<div className="caja-azul">
 			<div className="caja-blanca">
-				<div className="formulario">
+				<div className="formulario2">
 					<h2>REGISTRATE</h2>
 					<Desplegable
 						options={[
@@ -58,8 +59,8 @@ const Registro2 = () => {
 						id="infoFicha"
 						value={infoFicha}
 						readOnly
-						className="input-registro"
 						placeholder="Programa"
+						className="auto-completado"
 					/>
 
 					<Input label="Ciudad (Corregimiento, Municipio)" />
@@ -80,6 +81,10 @@ const Registro2 = () => {
 						]}
 					/>
 				</div>
+				{/* <div className="navegacion">
+					<button className="boton-navegacion">Atras</button>
+					<button className="boton-navegacion">Siguiente</button>
+				</div> */}
 			</div>
 			<img
 				className="img-registro"

@@ -30,13 +30,13 @@ const Autocompletar = ({ opciones, onSeleccion }) => {
 	}
 
 	return (
-		<>
+		<div className="contenedor-ficha">
 			<input
 				type="text"
 				placeholder="Buscar ficha"
 				value={inputValue}
 				onChange={handleInputChange}
-				className="input-registro"
+				className="numero-ficha"
 			/>
 
 			{mostrarSugerencias && (
@@ -48,7 +48,7 @@ const Autocompletar = ({ opciones, onSeleccion }) => {
 					))}
 				</ul>
 			)}
-		</>
+		</div>
 	)
 }
 
