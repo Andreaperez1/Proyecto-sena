@@ -5,8 +5,8 @@ import AppRouter from './routers/AppRouter';
 function App() {
 	return (
 		<div>
-			<Registro />
-			<Registro2 />
+			
+			
 			<AppRouter/>
 		</div>
 	)

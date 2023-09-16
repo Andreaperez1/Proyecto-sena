@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 
 // Componentes
-import Desplegable from '../componentes/desplegable'
-import PasswordInput from '../componentes/contraseña'
-import Autocompletar from '../componentes/autocompletar'
+import Desplegable from '../componentes/Desplegable'
+import PasswordInput from '../componentes/Contraseña'
+import Autocompletar from '../componentes/Autocompletar'
 import Input from '../componentes/Input'
 // CSS
 import '../page/styles/registro.css'
@@ -90,4 +90,4 @@ const Registro2 = () => {
 	)
 }
 
-export default Registro2
+export default Registro2;

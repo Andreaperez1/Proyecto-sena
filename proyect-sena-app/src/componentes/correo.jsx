@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/input-registro.css'
 
-function Correo(props) {
+function Correo(props,required) {
 	return (
 		<>
 			{/* lable vacío !!!!!*/}
@@ -18,10 +18,10 @@ function Correo(props) {
 				name={`correo ${props.correo}`}
 				label={`correo ${props.correo}`}
 				placeholder={`${props.correo}`}
-				required
+				required = {required}
 			></input>
 		</>
 	)
 }
 
-export default Correo
+export default Correo;

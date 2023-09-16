@@ -1,10 +1,14 @@
 import React from "react";
-
+import '../componentes/styles/fecha.css'
 const Fecha = ({ label}) => {
     return (
-    <input
-    type="date"
-    />
+        <div>
+            <label>{label}</label>
+            <input
+            type="date"
+            required
+            />
+        </div>
     )
 };
 

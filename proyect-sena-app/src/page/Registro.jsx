@@ -3,22 +3,20 @@ import React, { useState } from 'react'
 
 
 // componentes
-import Input from '../componentes/Input'
-import Desplegable from '../componentes/desplegable'
-import Correo from '../componentes/Correo'
-import PasswordInput from '../componentes/contraseña'
-import Autocompletar from '../componentes/autocompletar'
-import PoliticasPrivacidad from '../componentes/PoliticasPrivacidad'
-
+import Input from '../componentes/Input';
+import Desplegable from '../componentes/Desplegable';
+import Correo from '../componentes/correo';
+import PasswordInput from '../componentes/Contraseña';
+import Autocompletar from '../componentes/Autocompletar';
+import PoliticasPrivacidad from '../componentes/PoliticasPrivacidad';
 
 //importamos rutas
 import { Link, useNavigate } from 'react-router-dom'; // Importa los módulos correctamente
 
 
-
-
 // css
 import './styles/registro.css'
+import './Registro2' 
 
 
 const Registro = () => {
@@ -71,8 +69,8 @@ const Registro = () => {
           {step === 1 && (
             <>
               {/* Campos de información personal */}
-              <Input label="Nombres" />
-              <Input label="Apellidos" />
+              <Input label="Nombres" required/>
+              <Input label="Apellidos" required/>
               <label htmlFor="Tipo de Documento">Tipo de Documento</label>
               <Desplegable
                 options={[
@@ -82,13 +80,14 @@ const Registro = () => {
                   { value: 'C.E', label: 'C.E' },
                   { value: 'P.A', label: 'P.A' },
                 ]}
+                required
               />
-              <Input label="Número de Documento" />
-              <Input label="Teléfono" />
-              <Correo correo="Correo Institucional" />
+              <Input label="Número de Documento" required/>
+              <Input label="Teléfono" required/>
+              <Correo correo="Correo Institucional" required/>
               <Correo correo="Correo Personal" />
               <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
-              <input type="date" />
+              <input type="date" required/>
               <button onClick={goToNextStep}>Siguiente</button>
             </>
           )}
@@ -98,20 +97,36 @@ const Registro = () => {
             <>
               {/* Campos de información de registro */}
               <label htmlFor="Rol">Rol</label>
-              {/* Agrega el campo para el rol aquí */}
-              <label htmlFor="Contraseña">Contraseña</label>
+              <Desplegable
+						  options={[
+							    { value: '', label: 'Rol *' },
+							    { value: 'Aprendiz', label: 'Aprendiz' },
+							    { value: 'Profesor', label: 'Profesor' },
+							    { value: 'Admin', label: 'Admin' },
+						    ]}
+                required
+					    />
+              <label htmlFor="Contraseña" required>Contraseña</label>
               <PasswordInput />
-              <label htmlFor="ConfirmacionContraseña">Confirmación de Contraseña</label>
+              <label htmlFor="ConfirmacionContraseña" required>Confirmación de Contraseña</label>
               <PasswordInput />
               <label htmlFor="NúmeroFicha">Número de ficha</label>
               <Autocompletar
                 opciones={Object.keys(FichaInfo)}
                 onSeleccion={handleSeleccionFicha}
               />
-              <Input label="Ciudad (Corregimiento, Municipio)" />
-              <Input label="Barrio" />
-              <Input label="Dirección" />
-              <label htmlFor="TipoSangre">Tipo de sangre</label>
+              <label htmlFor="programa"></label> 
+					    <input
+						    type="text"
+						    id="infoFicha"
+						    value={infoFicha}
+						    readOnly
+						    placeholder="Programa"
+					    />
+              <Input label="Ciudad (Corregimiento, Municipio)" required />
+              <Input label="Barrio" required/>
+              <Input label="Dirección" requerid/>
+              <label htmlFor="TipoSangre" requerid>Tipo de sangre</label>
               <Desplegable
                 options={[
                   { value: ' ', label: ' ' },
@@ -124,6 +139,7 @@ const Registro = () => {
                   { value: 'AB+', label: 'AB+' },
                   { value: 'AB-', label: 'AB-' },
                 ]}
+             
               />
               <button onClick={goToPreviousStep}>Atrás</button>
               <button onClick={goToNextStep}>Siguiente</button>
@@ -142,6 +158,7 @@ const Registro = () => {
                   { value: 'Masculino', label: 'Masculino' },
                   { value: 'Otro', label: 'Otro' },
                 ]}
+                requerid
               />
               <label htmlFor="Eps">EPS</label>
               <Desplegable

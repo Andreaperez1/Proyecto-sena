@@ -3,7 +3,7 @@ import '../componentes/styles/desplegable.css'
 
 const Desplegable = ({ options }) => {
 	return (
-		<select className="desplegable">
+		<select className="desplegable" required>
 			{options.map((option, index) => (
 				<option key={index} value={option.value}>
 					{option.label}
@@ -13,4 +13,4 @@ const Desplegable = ({ options }) => {
 	)
 }
 
-export default Desplegable
+export default Desplegable;
