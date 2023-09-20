@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 # Esto es para utilizar npm 
 package-lock.json
+

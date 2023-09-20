@@ -1,100 +1,60 @@
-import React, { useState } from 'react'
+import { Select, Option, Checkbox, Button } from '@mui/joy'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-// componentes
-import Desplegable from '../componentes/desplegable'
-import PoliticasPrivacidad from '../componentes/PoliticasPrivacidad'
-
-// css
-import '../page/styles/registro3.css'
-
-const Registro3 = () => {
-	const handleAceptarPoliticas = () => {
-		setPoliticasAceptadas(true)
+export default function Registro3() {
+	function handleChange(event, newValue) {
+		console.log(`Cambiaste a "${newValue}"`)
 	}
-
-	const [politicasAceptadas, setPoliticasAceptadas] = useState(false)
-	const [mostrarPoliticas, setMostrarPoliticas] = useState(false)
-
-	const handleSubmit = (e) => {
-		e.preventDefault()
-
-		// 		// Verifica si las políticas han sido aceptadas antes de continuar
-		if (politicasAceptadas) {
-			// Aquí puedes realizar la lógica de registro del usuario
-			console.log('Usuario registrado correctamente')
-		} else {
-			alert('Debes aceptar las políticas de privacidad y seguridad.')
-		}
-	}
-
 	return (
-		<form onSubmit={handleSubmit} className="principal">
-			<div className="caja1">
-				<div className="formulario">
-					<Desplegable
-						options={[
-							{ value: ' ', label: ' ' },
-							{ value: 'Femenino', label: 'Femenino' },
-							{ value: 'Masculino', label: 'Masculino' },
-							{ value: 'Otro', label: 'Otro' },
-						]}
-					/>
-
-					<Desplegable
-						options={[
-							{ value: ' ', label: ' ' },
-							{ value: 'EPS 1', label: 'EPS 1' },
-							{ value: 'EPS 2', label: 'EPS 2' },
-							{ value: 'EPS 3', label: 'EPS 3' },
-							{ value: 'EPS 4', label: 'EPS 4' },
-							{ value: 'PS 5', label: 'EPS 5' },
-						]}
-					/>
-					<div>
-						<input
-							type="checkbox"
-							id="politicas"
-							checked={politicasAceptadas}
-							onChange={() => setPoliticasAceptadas(!politicasAceptadas)}
-						/>
-						<a href="#" onClick={() => setMostrarPoliticas(true)}>
-							Acepto las politicas de privacidad y seguridad
-						</a>
-					</div>
-					<button type="submit" disabled={!politicasAceptadas}>
-						Registrar
-					</button>
-					{mostrarPoliticas && (
-						<div className="ventana-emergente">
-							<div className="contenido-emergente">
-								<PoliticasPrivacidad />
-								<button onClick={() => setMostrarPoliticas(false)}>
-									Cerrar
-								</button>
-							</div>
-						</div>
-					)}
-				</div>
-				<div className="caja-azul2">
-					<img
-						className="img-bienestar"
-						src="../src/assets/img/logoblancosena.png"
-						alt="Logo-bienestar"
-					/>
-					<img
-						className="img-bienestar"
-						src="../src/assets/img/logo.png"
-						alt="Logo-bienestar"
-					/>
-				</div>
+		<>
+			<Select
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+				defaultValue=""
+				onChange={handleChange}
+			>
+				<Option value="">Tipo de sangre*</Option>
+				<Option value="A+">A+</Option>
+				<Option value="A-">A-</Option>
+				<Option value="O+">O+</Option>
+				<Option value="O-">O-</Option>
+				<Option value="AB+">AB+</Option>
+				<Option value="AB-">AB-</Option>
+			</Select>
+			<Select
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+				defaultValue=""
+				onChange={handleChange}
+			>
+				<Option value="">Genero*</Option>
+				<Option value="M">Masculino</Option>
+				<Option value="F">Femenino</Option>
+				<Option value="O">Otros</Option>
+			</Select>
+			<Select
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+				defaultValue=""
+				onChange={handleChange}
+			>
+				<Option value="">Eps*</Option>
+				<Option value="...">...</Option>
+			</Select>
+			<div className="politicaps ">
+				<Checkbox variant="soft" />
+				<a> Acepto las politicas de privacidad y seguridad</a>
 			</div>
-			<img
-				className="img-registro"
-				src="../src/assets/img/Bienvenida-web.webp"
-				alt="aprendiz sena"
-			/>
-		</form>
+			<Button sx={{ minWidth: '12rem', borderRadius: '15px' }}>
+				Registrar
+			</Button>
+			<Link to="/registro/2">
+				<div className="">{'Atrás'}</div>
+			</Link>
+		</>
 	)
 }
-
-export default Registro3

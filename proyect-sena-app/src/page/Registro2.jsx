@@ -1,98 +1,93 @@
 // React
-import React, { useState } from 'react'
+import { React, useState } from 'react'
 
-// Componentes
-import Desplegable from '../componentes/desplegable'
-import PasswordInput from '../componentes/Contraseña'
-import Autocompletar from '../componentes/autocompletar'
-import Input from '../componentes/Input'
+// Joy ui
+import { Input, Option, Select, Autocomplete, Button } from '@mui/joy'
 
-// CSS
-import '../page/styles/registro.css'
-import '../componentes/styles/input-registro.css'
+// iconos
+import VisibilityIcon from '@mui/icons-material/Visibility'
 
-const Registro2 = () => {
-	const FichaInfo = {
-		2712267: 'programacion de software',
-		2712345: 'Información sobre el Programa 2',
-		2787654: 'Información sobre el Programa 3',
+import { Link } from 'react-router-dom'
+
+export default function Registro2() {
+	function handleChange(event, newValue) {
+		console.log(`Cambiaste a "${newValue}"`)
 	}
-
-	// Función para manejar la selección de programa
-	// Corrige el nombre del objeto
-	const handleSeleccionFicha = (Ficha) => {
-		// Accede a la información del programa seleccionado desde el objeto
-		const informacion = FichaInfo[Ficha]
-
-		setProgramaSeleccionado(Ficha)
-		setInfoFicha(informacion)
-	}
-	const [programaSeleccionado, setProgramaSeleccionado] = useState('')
-	const [infoFicha, setInfoFicha] = useState('')
-
+	const [value, setValue] = useState('')
+	const minLength = 12
+	const Fichas = [
+		{ label: '1994 The Shawshank Redemption', Ficha: 1994 },
+		{ label: 'The Godfather', Ficha: 1972 },
+		{ label: 'The Godfather: Part II', Ficha: 1974 },
+		{ label: 'The Dark Knight', Ficha: 2008 },
+		{ label: '12 Angry Men', Ficha: 1957 },
+		{ label: "Schindler's List", Ficha: 1993 },
+		{ label: 'Pulp Fiction', Ficha: 1994 },
+	]
 	return (
-		<div className="caja-azul">
-			<div className="caja-blanca">
-				<div className="formulario2">
-					<h2>REGISTRATE</h2>
-					<Desplegable
-						options={[
-							{ value: '', label: 'Rol *' },
-							{ value: 'Aprendiz', label: 'Aprendiz' },
-							{ value: 'Profesor', label: 'Profesor' },
-							{ value: 'Admin', label: 'Admin' },
-						]}
-					/>
-					{/* <label htmlFor="Contraseña"></label> */}
-					<PasswordInput />
-					{/* <label htmlFor="Confirmacion de contraseña"></label> */}
-					<PasswordInput placeholder="Confirmar contraseña *" />
-					{/* <label htmlFor="N°">Número de ficha</label> */}
+		<>
+			<Select
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				defaultValue=""
+				onChange={handleChange}
+				required
+			>
+				<Option value="">Rol *</Option>
+				<Option value="Aprendiz">Aprendiz</Option>
+				<Option value="Instr">Instructor</Option>
+				<Option value="Admin">Administrador</Option>
+			</Select>
 
-					<Autocompletar
-						opciones={Object.keys(FichaInfo)} // Utiliza las claves del objeto como opciones
-						onSeleccion={handleSeleccionFicha}
-					/>
-					{/* <label htmlFor="programa"></label> */}
-					<input
-						type="text"
-						id="infoFicha"
-						value={infoFicha}
-						readOnly
-						placeholder="Programa"
-						className="auto-completado"
-					/>
-
-					<Input label="Ciudad (Corregimiento, Municipio)" />
-					<Input label="Barrio" />
-					<Input label="Dirrección" />
-
-					<Desplegable
-						options={[
-							{ value: ' ', label: 'Tipo de sangre *' },
-							{ value: 'A+', label: 'A+' },
-							{ value: 'A-', label: 'A-' },
-							{ value: 'B+', label: 'B+' },
-							{ value: 'B-', label: 'B-' },
-							{ value: 'O+', label: 'O+' },
-							{ value: 'O-', label: 'O-' },
-							{ value: 'AB+', label: 'AB+' },
-							{ value: 'AB-', label: 'AB-' },
-						]}
-					/>
-				</div>
-				{/* <div className="navegacion">
-					<button className="boton-navegacion">Atras</button>
-					<button className="boton-navegacion">Siguiente</button>
-				</div> */}
-			</div>
-			<img
-				className="img-registro"
-				src="../src/assets/img/Bienvenida-web.webp"
-				alt="Aprendices Sena"
+			<Input
+				type="password"
+				placeholder="Contraseña*"
+				endDecorator={<VisibilityIcon />}
+				sx={{ borderRadius: '15px', maxWidth: '16rem' }}
+				variant="soft"
+				required
 			/>
-		</div>
+			<Input
+				type="password"
+				placeholder="Confirmar Contraseña*"
+				endDecorator={<VisibilityIcon />}
+				sx={{ borderRadius: '15px', maxWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Autocomplete
+				placeholder="Número de ficha*"
+				options={Fichas}
+				variant="soft"
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				required
+			/>
+			<Input
+				placeholder="Ciudad*"
+				sx={{ borderRadius: '15px', maxWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				placeholder="Barrio*"
+				sx={{ borderRadius: '15px', maxWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				placeholder="Dirección*"
+				sx={{ borderRadius: '15px', maxWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<div className="navegacion ">
+				<Link to="/registro/1">
+					<div className="button-navegacion">{'<<Atrás'}</div>
+				</Link>
+				<Link to="/registro/3">
+					<div className="button-navegacion">{'Siguiente>>'}</div>
+				</Link>
+			</div>
+		</>
 	)
 }
-
-export default Registro2

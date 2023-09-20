@@ -1,0 +1,74 @@
+.principal {
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.caja1 {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.formulario-registro3 {
+  min-height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.Botonregistrar {
+  background-color: #004AAD;
+  color: white;
+  /* Color del texto */
+  border: none;
+  /* Elimina el borde del botón */
+  padding: 10px 50px;
+  /* Ajusta el espaciado interno del botón */
+  font-size: 16px;
+  /* Tamaño de fuente */
+  border-radius: 16px;
+  /* Bordes redondeados */
+  cursor: pointer;
+  margin: 2rem;
+  font-weight: bold;
+}
+
+.Botonregistrar:hover {
+  background-color: #00f6fa;
+}
+
+.Botonregistrar:active {
+  background-color: #004AAD;
+}
+
+.politicaps {
+  margin: 2rem;
+}
+
+
+.caja-azul2 {
+  min-height: 29.1%;
+  min-width: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 100px 100px 0px 0px;
+  background-color: #004AAD;
+
+}
+
+
+.img-bienestar {
+  width: 11rem;
+}
+
+.img-registro3 {
+  width: 50%;
+  object-fit: cover;
+
+
+}

@@ -2,10 +2,35 @@ h2 {
   font-size: 3.5rem;
 }
 
+.campo-ficha {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-bottom: rgba(0, 0, 0, 0.39) solid 0.5px;
+}
+
 .caja-azul {
   display: flex;
   background-color: #004AAD;
   min-height: 100vh;
+}
+
+.caja-azul2 {
+  min-height: 30%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  border-radius: 100px 100px 0px 0px;
+  background-color: #004AAD;
+  min-width: 50%;
+}
+
+.caja-blanca2 {
+  margin-top: 5rem;
+  width: 50%;
+  background-color: #FFF;
+  border-radius: 0px 400px 0px 400px;
 }
 
 .caja-blanca {
@@ -14,39 +39,18 @@ h2 {
   border-radius: 0px 400px 0px 400px;
 }
 
-/* .img-registro {
+.img-registro {
   width: 50%;
-  object-fit: cover
-} */
-@media (max-width: 768px) {
+  object-fit: cover;
 
-  /* Ocultar la imagen de registro en dispositivos móviles */
-  .img-registro {
-    display: none;
-  }
-
-  .caja-blanca {
-    width: 100%;
-    /* border-radius: 0; */
-    border-radius: 0px 300px 0px 300px;
-  }
 }
 
 .formulario {
   display: flex;
-  gap: 0.3rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-}
-
-.formulario2 {
-  display: flex;
-  gap: 0.3rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 2rem;
 
 }
 
@@ -56,28 +60,85 @@ h2 {
   display: flex;
   justify-content: space-between;
   bottom: 0;
-
-
+  margin: 3rem;
 }
 
-.navegacion>button {
-  border: 0;
-  padding: 4.5rem;
+.button-navegacion {
   font-weight: 700;
   text-decoration: underline;
   background-color: transparent;
   margin: 10px;
+  color: black;
+  min-width: none;
 
 }
 
-/* esto era ñlo que no servia */
-/* 
-.campo-fecha {
-  color: gray;
-  border: 0;
-  background-color: #ECECEC;
-  border-radius: 15px;
-  min-height: 2.5rem;
-  min-width: 15rem;
-  padding: 0rem 1rem;
-} */
+.principal {
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+
+.Botonregistrar {
+  background-color: #004AAD;
+  color: white;
+  border: none;
+  padding: 10px 50px;
+  font-size: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  margin: 2rem;
+  font-weight: bold;
+}
+
+.Botonregistrar:hover {
+  background-color: #00f6fa;
+}
+
+.Botonregistrar:active {
+  background-color: #004AAD;
+}
+
+.politicaps {
+  margin: 2rem;
+}
+
+.img-bienestar {
+  width: 11rem;
+}
+
+@media (max-width: 768px) {
+  .img-registro {
+    display: none;
+  }
+
+  .caja-blanca {
+    width: 100%;
+
+    border-radius: 0px 290px 0px 290px;
+  }
+
+  .caja-blanca2 {
+    margin-top: 5rem;
+    width: 100%;
+  }
+
+
+  .img-registro {
+    display: none;
+  }
+
+  .caja-azul2 {
+    min-width: 100%
+  }
+
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+}

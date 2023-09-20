@@ -1,11 +1,12 @@
-.desplegable {
+.calendario {
   border: 0;
   background-color: #ECECEC;
   border-radius: 15px;
   min-height: 2.5rem;
-  min-width: 17rem;
+  min-width: 15rem;
   color: grey;
+  padding: 0rem 1rem;
+  margin: 2%;
+  gap: 0.9rem;
   /* margin: 1rem; */
-  padding: 0.5rem 1rem;
-  margin: 1.2%
 }

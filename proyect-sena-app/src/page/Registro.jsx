@@ -1,82 +1,94 @@
-// react
 import React from 'react'
+import { Input, Option, Select } from '@mui/joy'
+import { Link } from 'react-router-dom'
 
-// componentes
-import Input from '../componentes/Input'
-import Desplegable from '../componentes/desplegable'
-import Correo from '../componentes/correo'
-import Fecha from '../componentes/Fecha'
+// componentes material
+// import {
+// 	TextField,
+// 	MenuItem,
+// 	FormControl,
+// 	InputLabel,
+// 	Select,
+// 	Button,
+// } from '@mui/material/'
 
-// css
-import '../page/styles/registro.css'
+// componentes Joy UI
 
-const Registro = () => {
-	const FichaInfo = {
-		2712267: 'programacion de software',
-		2712345: 'Información sobre el Programa 2',
-		2787654: 'Información sobre el Programa 3',
+export default function Registro() {
+	// const [tipoDoc, setTipoDoc] = React.useState('')
+
+	// const handleChange = (event) => {
+	// 	setTipoDoc(event.target.value)
+	// }
+
+	function handleChange(event, newValue) {
+		console.log(`Cambiaste a "${newValue}"`)
 	}
-
-	// Función para manejar la selección de programa
-	// Corrige el nombre del objeto
-	const handleSeleccionFicha = (Ficha) => {
-		// Accede a la información del programa seleccionado desde el objeto
-		const informacion = FichaInfo[Ficha]
-
-		setProgramaSeleccionado(Ficha)
-		setInfoFicha(informacion)
-	}
+	let nombre
 
 	return (
+		// Joy UI
 		<>
-			<form className="caja-azul">
-				<div className="caja-blanca">
-					<div className="formulario">
-						<h2>REGISTRATE</h2>
-						<Input label="Nombres *" />
-
-						<Input label="Apellidos *" />
-
-						{/* <label htmlFor="Tipo de Documento">Tipo de Documento</label> */}
-						<Desplegable
-							options={[
-								{ value: ' ', label: 'Tipo de documento *' },
-								{ value: 'T.I', label: 'T.I' },
-								{ value: 'C.C', label: 'C.C' },
-								{ value: 'C.E', label: 'C.E' },
-								{ value: 'P.A', label: 'P.A' },
-							]}
-						/>
-
-						<Input label="N° de documento * " />
-
-						<Input label="Teléfono *" />
-
-						<Correo correo="Correo Institucional *" />
-
-						<Correo correo="Correo Personal" />
-
-						{/* <label htmlFor="fechaNacimiento">Fecha de nacimiento</label> */}
-
-						<Fecha />
-					</div>
-					{/* <div className="navegacion">
-						<button className="boton-navegacion">Atras</button>
-						<button className="boton-navegacion">Siguiente</button>
-					</div> */}
-				</div>
-				<img
-					className="img-registro"
-					src="../src/assets/img/mujer-gorra.webp"
-					alt="aprendiz sena"
+			<Input
+				placeholder="Nombre*"
+				value={nombre}
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				placeholder="Apellido*"
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Select
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+				defaultValue=""
+				onChange={handleChange}
+			>
+				<Option value="">Tipo de documento*</Option>
+				<Option value="Ti">Ti</Option>
+				<Option value="Cc">Cc</Option>
+				<Option value="Pa">Pa</Option>
+			</Select>
+			<Input
+				placeholder="Número de documento*"
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				placeholder="Correo institucional*"
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				placeholder="Correo Personal"
+				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				variant="soft"
+				required
+			/>
+			<div style={{ display: 'block' }}>
+				<div style={{ textAlign: 'center' }}>Fecha de nacimiento*</div>
+				<Input
+					type="date"
+					sx={{ borderRadius: '15px', minWidth: '16rem' }}
+					variant="soft"
+					required
 				/>
-			</form>
-			{/* elementos de otras paginas */}
-			{/*  
-			// <button>Atras</button>
-			// <button>Siguiente</button> */}
+			</div>
+			<div className="navegacion ">
+				<Link to="/">
+					<div className="button-navegacion">{'<<Atrás'}</div>
+				</Link>
+				<Link to="/registro/2">
+					<div className="button-navegacion">{'Siguiente>>'}</div>
+				</Link>
+			</div>
 		</>
 	)
 }
-
-export default Registro
