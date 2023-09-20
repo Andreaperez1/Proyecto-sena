@@ -2,36 +2,16 @@ import React from 'react'
 import { Input, Option, Select } from '@mui/joy'
 import { Link } from 'react-router-dom'
 
-// componentes material
-// import {
-// 	TextField,
-// 	MenuItem,
-// 	FormControl,
-// 	InputLabel,
-// 	Select,
-// 	Button,
-// } from '@mui/material/'
-
 // componentes Joy UI
-
 export default function Registro() {
-	// const [tipoDoc, setTipoDoc] = React.useState('')
-
-	// const handleChange = (event) => {
-	// 	setTipoDoc(event.target.value)
-	// }
-
 	function handleChange(event, newValue) {
 		console.log(`Cambiaste a "${newValue}"`)
 	}
-	let nombre
-
 	return (
 		// Joy UI
 		<>
 			<Input
 				placeholder="Nombre*"
-				value={nombre}
 				sx={{ borderRadius: '15px', minWidth: '16rem' }}
 				variant="soft"
 				required

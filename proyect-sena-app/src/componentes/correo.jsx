@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/input-registro.css'
 
-function Correo(props) {
+function Correo(props, required) {
 	return (
 		<input
 			type="email"
