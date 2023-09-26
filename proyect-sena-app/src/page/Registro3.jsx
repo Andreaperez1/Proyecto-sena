@@ -1,19 +1,51 @@
 import { Select, Option, Checkbox, Button } from '@mui/joy'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { datosRegistro } from '../consultas/Datos'
+import { registrarUsuario } from '../consultas/Peticiones'
+
 export default function Registro3() {
-	function handleChange(event, newValue) {
-		console.log(`Cambiaste a "${newValue}"`)
+	let datosEPS = JSON.parse(localStorage.getItem('eps'))
+
+	const [rh, setRh] = useState(datosRegistro.rh)
+	const [genero, setGenero] = useState(datosRegistro.genero)
+	const [eps, setEps] = useState(datosRegistro.eps)
+	const [politicas, setPoliticas] = useState(datosRegistro.pps)
+	function handelChangeCheck(e) {
+		setPoliticas(e.target.checked)
+		alert('Politicas de Pivacidad')
+		console.log(datosRegistro)
 	}
+
+	function guardarDatos() {
+		datosRegistro.rh = rh
+		datosRegistro.genero = genero
+		datosRegistro.eps = eps
+		datosRegistro.pps = politicas
+	}
+
+	let listaEps = datosEPS.map((eps) => (
+		<Option key={eps._id} value={eps._id}>
+			{' '}
+			{eps.nombre}{' '}
+		</Option>
+	))
+
+	useEffect(() => {
+		guardarDatos()
+		// console.log(rh, genero, eps, politicas)
+	}, [rh, genero, eps, politicas])
+
 	return (
 		<>
 			<Select
-				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
 				variant="soft"
 				required
 				defaultValue=""
-				onChange={handleChange}
+				onChange={(e, nE) => setRh(nE)}
+				value={rh}
 			>
 				<Option value="">Tipo de sangre*</Option>
 				<Option value="A+">A+</Option>
@@ -24,11 +56,12 @@ export default function Registro3() {
 				<Option value="AB-">AB-</Option>
 			</Select>
 			<Select
-				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
 				variant="soft"
 				required
 				defaultValue=""
-				onChange={handleChange}
+				onChange={(e, nE) => setGenero(nE)}
+				value={genero}
 			>
 				<Option value="">Genero*</Option>
 				<Option value="M">Masculino</Option>
@@ -36,25 +69,42 @@ export default function Registro3() {
 				<Option value="O">Otros</Option>
 			</Select>
 			<Select
-				sx={{ borderRadius: '15px', minWidth: '16rem' }}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
 				variant="soft"
 				required
 				defaultValue=""
-				onChange={handleChange}
+				onChange={(e, nE) => setEps(nE)}
+				value={eps}
 			>
-				<Option value="">Eps*</Option>
-				<Option value="...">...</Option>
+				<Option key=" " value="">
+					Eps
+				</Option>
+				{listaEps}
 			</Select>
-			<div className="politicaps ">
-				<Checkbox variant="soft" />
-				<a> Acepto las politicas de privacidad y seguridad</a>
+			<div className="caja-politicas">
+				<Checkbox
+					checked={politicas}
+					variant="soft"
+					label="Acepto las politicas de privacidad y seguridad"
+					onChange={handelChangeCheck}
+				/>
 			</div>
-			<Button sx={{ minWidth: '12rem', borderRadius: '15px' }}>
-				Registrar
-			</Button>
-			<Link to="/registro/2">
-				<div className="">{'Atrás'}</div>
-			</Link>
+			{!politicas ? (
+				<Button disabled sx={{ borderRadius: '15px', margin: '0 30%' }}>
+					Registrar
+				</Button>
+			) : (
+				<Button
+					onClick={() => registrarUsuario(datosRegistro)}
+					sx={{ borderRadius: '15px', margin: '0 30%' }}
+				>
+					Registrar
+				</Button>
+			)}
+
+			<div className="boton-atras-registro3">
+				<Link to="/registro/2">Atrás</Link>
+			</div>
 		</>
 	)
 }

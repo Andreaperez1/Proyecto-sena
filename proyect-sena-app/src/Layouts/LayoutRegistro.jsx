@@ -1,23 +1,24 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+
 import '../page/styles/registro.css'
 
 export default function () {
 	return (
 		<>
-			<div className="caja-azul">
-				<div className="caja-blanca">
-					<div className="formulario">
-						<h2>REGISTRATE</h2>
-						<Outlet></Outlet>
-					</div>
-				</div>
+			<form className="caja-azul">
 				<img
 					className="img-registro"
 					src="/img/mujerGorra.jpg"
 					alt="aprendiz sena"
 				/>
-			</div>
+				<div className="caja-blanca">
+					<h2>REGISTRATE</h2>
+					<div className="formulario">
+						<Outlet></Outlet>
+					</div>
+				</div>
+			</form>
 		</>
 	)
 }

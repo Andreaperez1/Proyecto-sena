@@ -17,7 +17,6 @@ function PasswordInput({ placeholder = 'Contraseña *' }) {
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				placeholder={placeholder}
-				required
 			/>
 			<button
 				className="mostrar-conrtaseña"
@@ -30,4 +29,4 @@ function PasswordInput({ placeholder = 'Contraseña *' }) {
 	)
 }
 
-export default PasswordInput;
+export default PasswordInput
