@@ -1,15 +1,9 @@
-import React from "react";
+import React from 'react'
+import '../componentes/Fecha.jsx'
 import '../componentes/styles/fecha.css'
-const Fecha = ({ label}) => {
-    return (
-        <div>
-            <label>{label}</label>
-            <input
-            type="date"
-            required
-            />
-        </div>
-    )
-};
 
-export default Fecha;
+const Fecha = ({ label }) => {
+	return <input type="date" className="calendario" />
+}
+
+export default Fecha

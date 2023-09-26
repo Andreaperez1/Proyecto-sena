@@ -1,27 +1,16 @@
 import React from 'react'
 import './styles/input-registro.css'
 
-function Correo(props,required) {
+function Correo(props) {
 	return (
-		<>
-			{/* lable vacío !!!!!*/}
-
-			{/* <label
-				className={`correo ${props.correo}`}
-				htmlFor={`correo ${props.correo}`}
-				>
-				{' '}
-			</label> */}
-			<input
-				className="input-registro"
-				type="email"
-				name={`correo ${props.correo}`}
-				label={`correo ${props.correo}`}
-				placeholder={`${props.correo}`}
-				required = {required}
-			></input>
-		</>
+		<input
+			type="email"
+			name={`correo ${props.correo}`}
+			label={`correo ${props.correo}`}
+			placeholder={`${props.correo}`}
+			className="input-registro"
+		></input>
 	)
 }
 
-export default Correo;
+export default Correo

@@ -1,18 +1,17 @@
-import Registro from './page/Registro'
-import Registro2 from './page/Registro2'
+import AppRouter from './routers/AppRouter'
 import './App.css'
-import AppRouter from './routers/AppRouter';
+import config from './componentes/config'; // Importa la bandera de estado desde config.js
+import MaintenancePage from './componentes/MaintenancePage';
 function App() {
+	if (config.isMaintenance) {
+		return <MaintenancePage />;
+	}
+	
 	return (
 		<div>
-			
-			
-			<AppRouter/>
+			<AppRouter />
 		</div>
 	)
 }
 
 export default App
-
-
-

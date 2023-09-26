@@ -1,93 +1,178 @@
 // React
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-// Componentes
-import Desplegable from '../componentes/Desplegable'
-import PasswordInput from '../componentes/Contraseña'
-import Autocompletar from '../componentes/Autocompletar'
-import Input from '../componentes/Input'
-// CSS
-import '../page/styles/registro.css'
-import '../componentes/styles/input-registro.css'
+// Joy ui
+import { Input, Option, Select, Autocomplete } from '@mui/joy'
 
-const Registro2 = () => {
-	const FichaInfo = {
-		2712267: 'programacion de software',
-		2712345: 'Información sobre el Programa 2',
-		2787654: 'Información sobre el Programa 3',
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+
+import { datosRegistro } from '../consultas/Datos'
+
+export default function Registro2() {
+	const roles = JSON.parse(localStorage.getItem('roles'))
+	const fichas = JSON.parse(localStorage.getItem('fichas'))
+	const [rol, setRol] = useState(datosRegistro.rol)
+	const [contrasena, setContrasena] = useState(datosRegistro.contrasena)
+	const [contrasena2, setContrasena2] = useState('')
+	const [ficha, setFicha] = useState(datosRegistro.ficha)
+	const [telefono, setTelefono] = useState(datosRegistro.telefono)
+	const [direccion, setDireccion] = useState(datosRegistro.direccion)
+	let contrasIguales
+
+	const ojoAbierto = <VisibilityIcon onClick={cambiarAText} />
+	const ojoCerrado = <VisibilityOffIcon onClick={cambiarAPass} />
+
+	const [typeInput, setTypeInput] = useState('password')
+	const [iconoPass, setIconPass] = useState(ojoAbierto)
+
+	function cambiarAText() {
+		setTypeInput('text')
+		setIconPass(ojoCerrado)
+	}
+	function cambiarAPass() {
+		setTypeInput('password')
+		setIconPass(ojoAbierto)
 	}
 
-	// Función para manejar la selección de programa
-	// Corrige el nombre del objeto
-	const handleSeleccionFicha = (Ficha) => {
-		// Accede a la información del programa seleccionado desde el objeto
-		const informacion = FichaInfo[Ficha]
-
-		setProgramaSeleccionado(Ficha)
-		setInfoFicha(informacion)
+	function handleChangeRol(event, newValue) {
+		setRol(newValue)
+		console.log(newValue)
 	}
-	const [programaSeleccionado, setProgramaSeleccionado] = useState('')
-	const [infoFicha, setInfoFicha] = useState('')
+	function handleChangeContrasena(event) {
+		console.log(event.target.value)
+		setContrasena(event.target.value)
+	}
+	function handleChangeContrasena2(event) {
+		setContrasena2(event.target.value)
+	}
+
+	function guardarIdficha(codigo) {
+		const fichaElegida = fichas.find((e) => e.codigo === codigo)
+		setFicha(fichaElegida._id)
+		console.log(fichaElegida)
+	}
+
+	function handleChangeFicha(event, newValue) {
+		guardarIdficha(newValue)
+	}
+
+	function handleChangeTelefono(event) {
+		setTelefono(event.target.value)
+	}
+	function handleChangeDireccion(event) {
+		setDireccion(event.target.value)
+	}
+
+	const listRoles = roles.map((rol) => (
+		<Option key={rol._id} value={rol._id}>
+			{rol.nombre}
+		</Option>
+	))
+
+	function compararContraseña() {
+		if (contrasena != '' && contrasena2 != '' && contrasena == contrasena2) {
+			// console.log('las contraseñas sonIguales')
+			contrasIguales = true
+		} else {
+			// console.log('Contraseña no es igual')
+
+			contrasIguales = false
+		}
+	}
+
+	function guardarDatos() {
+		datosRegistro.rol = rol
+		datosRegistro.contrasena = contrasena
+		datosRegistro.ficha = ficha
+		datosRegistro.telefono = telefono
+		datosRegistro.direccion = direccion
+	}
+
+	useEffect(() => {
+		compararContraseña()
+		guardarDatos()
+	}, [rol, contrasena, contrasena2, ficha, telefono, direccion])
 
 	return (
-		<div className="caja-azul">
-			<div className="caja-blanca">
-				<div className="formulario">
-					<h2>REGISTRATE</h2>
-					<Desplegable
-						options={[
-							{ value: '', label: 'Rol *' },
-							{ value: 'Aprendiz', label: 'Aprendiz' },
-							{ value: 'Profesor', label: 'Profesor' },
-							{ value: 'Admin', label: 'Admin' },
-						]}
-					/>
-					{/* <label htmlFor="Contraseña"></label> */}
-					<PasswordInput />
-					{/* <label htmlFor="Confirmacion de contraseña"></label> */}
-					<PasswordInput placeholder="Confirmar contraseña *" />
-					{/* <label htmlFor="N°">Número de ficha</label> */}
+		<>
+			<Select
+				defaultValue={rol}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				onChange={handleChangeRol}
+				required
+			>
+				<Option key=" " value="">
+					Rol *
+				</Option>
+				{listRoles}
+			</Select>
 
-					<Autocompletar
-						opciones={Object.keys(FichaInfo)} // Utiliza las claves del objeto como opciones
-						onSeleccion={handleSeleccionFicha}
-					/>
-					{/* <label htmlFor="programa"></label> */}
-					<input
-						type="text"
-						id="infoFicha"
-						value={infoFicha}
-						readOnly
-						className="input-registro"
-						placeholder="Programa"
-					/>
-
-					<Input label="Ciudad (Corregimiento, Municipio)" />
-					<Input label="Barrio" />
-					<Input label="Dirrección" />
-
-					<Desplegable
-						options={[
-							{ value: ' ', label: 'Tipo de sangre *' },
-							{ value: 'A+', label: 'A+' },
-							{ value: 'A-', label: 'A-' },
-							{ value: 'B+', label: 'B+' },
-							{ value: 'B-', label: 'B-' },
-							{ value: 'O+', label: 'O+' },
-							{ value: 'O-', label: 'O-' },
-							{ value: 'AB+', label: 'AB+' },
-							{ value: 'AB-', label: 'AB-' },
-						]}
-					/>
-				</div>
-			</div>
-			<img
-				className="img-registro"
-				src="../src/assets/img/Bienvenida-web.webp"
-				alt="Aprendices Sena"
+			<Input
+				onChange={handleChangeContrasena}
+				type={typeInput}
+				placeholder="Contraseña*"
+				endDecorator={iconoPass}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
 			/>
-		</div>
+			<Input
+				onChange={handleChangeContrasena2}
+				type={typeInput}
+				placeholder="Confirmar Contraseña*"
+				endDecorator={iconoPass}
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Autocomplete
+				onInputChange={handleChangeFicha}
+				isOptionEqualToValue={() => true}
+				options={fichas}
+				defaultChecked={ficha}
+				getOptionLabel={(fichas) => fichas.codigo}
+				placeholder="Número de ficha*"
+				variant="soft"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				required
+			/>
+			<Input
+				value={telefono}
+				onChange={handleChangeTelefono}
+				placeholder="Telefono*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				value={direccion}
+				onChange={handleChangeDireccion}
+				placeholder="Dirección*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<div className="navegacion ">
+				<Link to="/registro/1">
+					<div className="button-navegacion">{'Atrás'}</div>
+				</Link>
+				{rol == '' ||
+				contrasena == '' ||
+				contrasena2 == '' ||
+				contrasIguales == false ||
+				ficha == '' ||
+				telefono == '' ||
+				direccion == '' ? (
+					<button className="button-navegacion">{'Siguiente'}</button>
+				) : (
+					<Link to="/registro/3">
+						<div className="button-navegacion">{'Siguiente'}</div>
+					</Link>
+				)}
+			</div>
+		</>
 	)
 }
-
-export default Registro2;

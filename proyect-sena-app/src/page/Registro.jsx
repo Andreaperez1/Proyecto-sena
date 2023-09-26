@@ -1,204 +1,148 @@
-// react
 import React, { useState } from 'react'
+import { Input, Option, Select } from '@mui/joy'
+import { Link } from 'react-router-dom'
 
+import { datosRegistro } from '../consultas/Datos'
 
-// componentes
-import Input from '../componentes/Input';
-import Desplegable from '../componentes/Desplegable';
-import Correo from '../componentes/correo';
-import PasswordInput from '../componentes/Contraseña';
-import Autocompletar from '../componentes/Autocompletar';
-import PoliticasPrivacidad from '../componentes/PoliticasPrivacidad';
+export default function Registro() {
+	let [nombre, setNombre] = useState(datosRegistro.nombres)
+	let [apellido, setApellido] = useState(datosRegistro.apellidos)
+	let [tDocumento, setTDocumento] = useState(datosRegistro.tipo_doc)
+	let [documento, setDocumento] = useState(datosRegistro.n_doc)
+	let [correoSena, setCorreoSena] = useState(datosRegistro.correo_inst)
+	let [correo, setCorreo] = useState(datosRegistro.correo_pers)
+	let [fechaNacimiento, setFechaNacimiento] = useState(datosRegistro.nacimiento)
 
-//importamos rutas
-import { Link, useNavigate } from 'react-router-dom'; // Importa los módulos correctamente
+	function handleChangeNombre(e) {
+		setNombre(e.target.value)
+	}
 
+	function handleChangeApellido(e) {
+		setApellido(e.target.value)
+	}
 
-// css
-import './styles/registro.css'
-import './Registro2' 
+	function handleChangeTDocumento(e, newValue) {
+		setTDocumento(newValue)
+	}
 
+	function handleChangeNumeroDoc(e) {
+		setDocumento(e.target.value)
+	}
 
-const Registro = () => {
-    const [step, setStep] = useState(1);
-    const [politicasAceptadas, setPoliticasAceptadas] = useState(false);
-    const [mostrarPoliticas, setMostrarPoliticas] = useState(false);
-    const [programaSeleccionado, setProgramaSeleccionado] = useState('');
-    const [infoFicha, setInfoFicha] = useState('');
- 
-    const FichaInfo = {
-      2712267: 'programacion de software',
-      2712345: 'Información sobre el Programa 2',
-      2787654: 'Información sobre el Programa 3',
-    };
- 
-    const handleSeleccionFicha = (Ficha) => {
-      const informacion = FichaInfo[Ficha];
-      setProgramaSeleccionado(Ficha);
-      setInfoFicha(informacion);
-    };
- 
-    const goToNextStep = () => {
-      if (step < 3) {
-        setStep(step + 1);
-      }
-    };
- 
-    const goToPreviousStep = () => {
-      if (step > 1) {
-        setStep(step - 1);
-      }
-    };
- 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if (politicasAceptadas) {
-        // Realiza la lógica de registro aquí
-        console.log('Usuario registrado correctamente');
-      } else {
-        alert('Debes aceptar las políticas de privacidad y seguridad.');
-      }
-    };
- 
-    return (
-      <div>
-        <form onSubmit={handleSubmit}>
-          <h1>REGISTRATE</h1>
- 
-          {/* Sección 1: Información personal */}
-          {step === 1 && (
-            <>
-              {/* Campos de información personal */}
-              <Input label="Nombres" required/>
-              <Input label="Apellidos" required/>
-              <label htmlFor="Tipo de Documento">Tipo de Documento</label>
-              <Desplegable
-                options={[
-                  { value: ' ', label: ' ' },
-                  { value: 'T.I', label: 'T.I' },
-                  { value: 'C.C', label: 'C.C' },
-                  { value: 'C.E', label: 'C.E' },
-                  { value: 'P.A', label: 'P.A' },
-                ]}
-                required
-              />
-              <Input label="Número de Documento" required/>
-              <Input label="Teléfono" required/>
-              <Correo correo="Correo Institucional" required/>
-              <Correo correo="Correo Personal" />
-              <label htmlFor="fechaNacimiento">Fecha de nacimiento</label>
-              <input type="date" required/>
-              <button onClick={goToNextStep}>Siguiente</button>
-            </>
-          )}
- 
-          {/* Sección 2: Información de registro */}
-          {step === 2 && (
-            <>
-              {/* Campos de información de registro */}
-              <label htmlFor="Rol">Rol</label>
-              <Desplegable
-						  options={[
-							    { value: '', label: 'Rol *' },
-							    { value: 'Aprendiz', label: 'Aprendiz' },
-							    { value: 'Profesor', label: 'Profesor' },
-							    { value: 'Admin', label: 'Admin' },
-						    ]}
-                required
-					    />
-              <label htmlFor="Contraseña" required>Contraseña</label>
-              <PasswordInput />
-              <label htmlFor="ConfirmacionContraseña" required>Confirmación de Contraseña</label>
-              <PasswordInput />
-              <label htmlFor="NúmeroFicha">Número de ficha</label>
-              <Autocompletar
-                opciones={Object.keys(FichaInfo)}
-                onSeleccion={handleSeleccionFicha}
-              />
-              <label htmlFor="programa"></label> 
-					    <input
-						    type="text"
-						    id="infoFicha"
-						    value={infoFicha}
-						    readOnly
-						    placeholder="Programa"
-					    />
-              <Input label="Ciudad (Corregimiento, Municipio)" required />
-              <Input label="Barrio" required/>
-              <Input label="Dirección" requerid/>
-              <label htmlFor="TipoSangre" requerid>Tipo de sangre</label>
-              <Desplegable
-                options={[
-                  { value: ' ', label: ' ' },
-                  { value: 'A+', label: 'A+' },
-                  { value: 'A-', label: 'A-' },
-                  { value: 'B+', label: 'B+' },
-                  { value: 'B-', label: 'B-' },
-                  { value: 'O+', label: 'O+' },
-                  { value: 'O-', label: 'O-' },
-                  { value: 'AB+', label: 'AB+' },
-                  { value: 'AB-', label: 'AB-' },
-                ]}
-             
-              />
-              <button onClick={goToPreviousStep}>Atrás</button>
-              <button onClick={goToNextStep}>Siguiente</button>
-            </>
-          )}
- 
-          {/* Sección 3: Opciones adicionales y finalización */}
-          {step === 3 && (
-            <>
-              {/* Campos de opciones adicionales y finalización */}
-              <label htmlFor="Genero">Género</label>
-              <Desplegable
-                options={[
-                  { value: ' ', label: ' ' },
-                  { value: 'Femenino', label: 'Femenino' },
-                  { value: 'Masculino', label: 'Masculino' },
-                  { value: 'Otro', label: 'Otro' },
-                ]}
-                requerid
-              />
-              <label htmlFor="Eps">EPS</label>
-              <Desplegable
-                options={[
-                  { value: ' ', label: ' ' },
-                  { value: 'EPS 1', label: 'EPS 1' },
-                  { value: 'EPS 2', label: 'EPS 2' },
-                  { value: 'EPS 3', label: 'EPS 3' },
-                  { value: 'EPS 4', label: 'EPS 4' },
-                  { value: 'EPS 5', label: 'EPS 5' },
-                ]}
-              />
-              <label htmlFor="politicas">
-                <input
-                  type="checkbox"
-                  id="politicas"
-                  checked={politicasAceptadas}
-                  onChange={() => setPoliticasAceptadas(!politicasAceptadas)}
-                />
-                <a href="#" onClick={() => setMostrarPoliticas(true)}>
-                  Acepto las políticas de privacidad y seguridad
-                </a>
-              </label>
-              <button onClick={goToPreviousStep}>Atrás</button>
-              <button type="submit" disabled={!politicasAceptadas}>Finalizar</button>
-            </>
-          )}
-        </form>
- 
-        {/* Ventana emergente para las políticas */}
-        {mostrarPoliticas && (
-          <div className="ventana-emergente">
-            <div className="contenido-emergente">
-              {/* Agrega el contenido de las políticas aquí */}
-              <button onClick={() => setMostrarPoliticas(false)}>Cerrar</button>
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
- 
-  export default Registro;
+	function handleChangeCorreoSena(e) {
+		setCorreoSena(e.target.value)
+	}
+
+	function handleChangeCorreo(e) {
+		setCorreo(e.target.value)
+	}
+
+	function handlechangeFechaNacimiento(e) {
+		setFechaNacimiento(e.target.value)
+	}
+
+	function mantenerDatos() {
+		datosRegistro.nombres = nombre
+		datosRegistro.apellidos = apellido
+		datosRegistro.tipo_doc = tDocumento
+		datosRegistro.n_doc = documento
+		datosRegistro.correo_inst = correoSena
+		datosRegistro.correo_pers = correo
+		datosRegistro.nacimiento = fechaNacimiento
+	}
+
+	return (
+		// formulario
+		<>
+			<Input
+				value={nombre}
+				onChange={handleChangeNombre}
+				placeholder="Nombre*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				value={apellido}
+				onChange={handleChangeApellido}
+				placeholder="Apellido*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Select
+				sx={{ borderRadius: '15px', margin: '0 30%', color: 'gray' }}
+				variant="soft"
+				required
+				defaultValue=""
+				value={tDocumento}
+				onChange={handleChangeTDocumento}
+			>
+				<Option value="">Tipo de documento*</Option>
+				<Option value="T.I">T.I</Option>
+				<Option value="C.C">C.C</Option>
+				<Option value="C.e">C.E</Option>
+				<Option value="P.a">P.A</Option>
+			</Select>
+			<Input
+				value={documento}
+				onChange={handleChangeNumeroDoc}
+				placeholder="Número de documento*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				value={correoSena}
+				onChange={handleChangeCorreoSena}
+				placeholder="Correo institucional*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<Input
+				value={correo}
+				onChange={handleChangeCorreo}
+				placeholder="Correo Personal*"
+				sx={{ borderRadius: '15px', margin: '0 30%' }}
+				variant="soft"
+				required
+			/>
+			<div style={{ display: 'block' }}>
+				<div style={{ textAlign: 'left', margin: '0 31%', color: 'gray' }}>
+					Fecha de nacimiento*
+				</div>
+				<Input
+					onChange={handlechangeFechaNacimiento}
+					value={fechaNacimiento}
+					type="date"
+					sx={{ borderRadius: '15px', margin: '0 30%', color: 'gray' }}
+					variant="soft"
+					required
+				/>
+			</div>
+			<div className="navegacion">
+				<Link to="/" className="button-navegacion">
+					<div onClick={mantenerDatos}>{'Atrás'}</div>
+				</Link>
+
+				{nombre == '' ||
+				apellido == '' ||
+				tDocumento == '' ||
+				documento == '' ||
+				correoSena == '' ||
+				fechaNacimiento == '' ? (
+					<button onClick={mantenerDatos} className="button-navegacion">
+						{'Siguiente'}
+					</button>
+				) : (
+					<Link to="/registro/2">
+						<div onClick={mantenerDatos} className="button-navegacion">
+							{'Siguiente>>'}
+						</div>
+					</Link>
+				)}
+			</div>
+		</>
+	)
+}

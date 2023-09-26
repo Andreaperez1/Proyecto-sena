@@ -12,12 +12,11 @@ function PasswordInput({ placeholder = 'Contraseña *' }) {
 	return (
 		<div className="campo-contraseña">
 			<input
-				className=" input-registro input-contraseña"
+				className="  input-contraseña"
 				type={showPassword ? 'text' : 'password'}
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				placeholder={placeholder}
-				required
 			/>
 			<button
 				className="mostrar-conrtaseña"
@@ -30,4 +29,4 @@ function PasswordInput({ placeholder = 'Contraseña *' }) {
 	)
 }
 
-export default PasswordInput;
+export default PasswordInput
