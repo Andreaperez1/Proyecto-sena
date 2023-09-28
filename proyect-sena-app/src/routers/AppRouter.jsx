@@ -15,7 +15,8 @@ import Registro3 from '../page/Registro3'
 import Home from '../page/home'
 import Login from '../page/Login'
 
-import Recuperar from '../componentes/recuperar'
+import Recuperar from '../page/Recuperar'
+import VerificarContraseña from '../page/VerificarContraseña'
 
 function AppRouter() {
 	return (
@@ -24,7 +25,7 @@ function AppRouter() {
 			<Route path="/" element={<Home />}></Route>
 			{/* ruta paginas registro */}
 			<Route path="/registro" element={<LayoutRegistro />}>
-				<Route path="1" element={<Registro />}></Route>
+				<Route path="/registro" element={<Registro />}></Route>
 				<Route path="2" element={<Registro2 />}></Route>
 			</Route>
 			<Route path="/registro" element={<LayoutRegistro3 />}>
@@ -38,8 +39,10 @@ function AppRouter() {
 
 			{/* Nueva ruta para la página de recuperación de contraseña */}
 			<Route path="/recuperar-contrasena" element={<Recuperar />} />
+			<Route path="/nueva-contraseña" element={<VerificarContraseña />} />
+
 		</Routes>
 	)
 }
 
-export default AppRouter
+export default AppRouter;

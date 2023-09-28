@@ -15,7 +15,7 @@ const Home = () => {
 	return (
 		<div>
 			<h1>Home</h1>
-			<Link to="/registro/1">
+			<Link to="/registro">
 				<button onClick={pedirDatosBackend}>Regístrate</button>
 			</Link>
 			<Link to="/login">
