@@ -28,5 +28,20 @@ function registrarUsuario(datos) {
 			alert(error.message)
 		})
 }
+function ingresarlogin(datos) {
+	axios
+		.post(
+			`https://proyecto-backend-sgbienestar.onrender.com/registro/login`,
+			datos
+		)
+		.then(function (response) {
+			console.log(response)
+			alert(response.data.message)
+		})
+		.catch(function (error) {
+			console.log(error)
+			alert(error.message)
+		})
+}
 
-export { buscarPorRuta, registrarUsuario }
+export { buscarPorRuta, registrarUsuario, ingresarlogin }

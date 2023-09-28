@@ -15,7 +15,11 @@ let datosRegistro = {
 	genero: '',
 	eps: '',
 	pps: false,
-	activacion: false
+	activacion: false,
 }
 
-export { datosRegistro }
+let datoslogin = {
+	correo_inst: '',
+	contrasena: '',
+}
+export { datosRegistro, datoslogin }

@@ -122,8 +122,10 @@ export default function Registro() {
 				/>
 			</div>
 			<div className="navegacion">
-				<Link to="/" className="button-navegacion">
-					<div onClick={mantenerDatos}>{'Atrás'}</div>
+				<Link to="/">
+					<div className="button-navegacion2" onClick={mantenerDatos}>
+						{'Atrás'}
+					</div>
 				</Link>
 
 				{nombre == '' ||
