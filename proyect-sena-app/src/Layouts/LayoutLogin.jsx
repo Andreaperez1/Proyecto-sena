@@ -7,16 +7,18 @@ export default function () {
 		<>
 			<div className="caja-azul">
 				<img
-					className="imagen-deportes"
+					className="imagenlogin"
 					src="/img/imagenlogin.png"
-					alt="imagenes login"
+					alt="imagen login"
 				/>
 
-				<div className="caja-formulario">
+				<div className="caja-contenedor">
 					<div className="caja-transparente1">
-						<Outlet></Outlet>
+						<div className="caja-formulario">
+							<Outlet></Outlet>
+						</div>
+						<div className="caja-transparente2">LOGIN</div>
 					</div>
-					<div className="caja-transparente2"></div>
 				</div>
 			</div>
 		</>

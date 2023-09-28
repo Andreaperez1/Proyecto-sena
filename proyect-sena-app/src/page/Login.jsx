@@ -33,8 +33,9 @@ export default function () {
 				placeholder="Usuario"
 				sx={{
 					borderRadius: '15px',
-					margin: '0 10%',
+					margin: '0 30%',
 					display: 'flex',
+					gap: '1rem',
 				}}
 				variant="soft"
 			/>
@@ -45,17 +46,11 @@ export default function () {
 				placeholder="Contraseña"
 				sx={{
 					borderRadius: '15px',
-					margin: '0 10%',
+					margin: '0 30%',
 					display: 'flex',
 				}}
 				variant="soft"
 			/>
-			<button
-				className="botonInsgresar"
-				onClick={() => ingresarlogin(datoslogin)}
-			>
-				Ingresar
-			</button>
 			<div>
 				<Link to="/recuperar-contrasena">
 					{' '}
@@ -64,6 +59,12 @@ export default function () {
 					{/* <p>recuperar contraseña</p> */}
 				</Link>
 			</div>
+			<button
+				className="botonInsgresar"
+				onClick={() => ingresarlogin(datoslogin)}
+			>
+				Ingresar
+			</button>
 		</>
 	)
 }

@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 // layouts
 import LayoutRegistro from '../Layouts/LayoutRegistro'
 import LayoutRegistro3 from '../Layouts/LayoutRegistro3'
-// import LayoutLogin from '../Layouts/LayoutLogin'
+import LayoutLogin from '../Layouts/LayoutLogin'
 
 // paginas
 import Registro from '../page/Registro'
@@ -32,9 +32,9 @@ function AppRouter() {
 			</Route>
 
 			{/* ruta pagian login */}
-			{/* <Route path="/Login" element={<LayoutLogin />}> */}
-			<Route path="/login" element={<Login />}></Route>
-			{/* </Route> */}
+			<Route path="/" element={<LayoutLogin />}>
+				<Route path="/login" element={<Login />}></Route>
+			</Route>
 
 			{/* Nueva ruta para la página de recuperación de contraseña */}
 			<Route path="/recuperar-contrasena" element={<Recuperar />} />

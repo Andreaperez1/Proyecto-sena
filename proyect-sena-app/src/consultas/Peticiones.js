@@ -35,8 +35,8 @@ function ingresarlogin(datos) {
 			datos
 		)
 		.then(function (response) {
+			localStorage.setItem('tokenlogin', response.data)
 			console.log(response)
-			alert(response.data.message)
 		})
 		.catch(function (error) {
 			console.log(error)
